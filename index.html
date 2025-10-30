@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libreria</title>
+
+        <style>
+        h1{
+            color: rgb(255, 255, 255);
+            border: rgb(255, 255, 255) 20px;
+        }
+        .biblioteca{
+            text-align: center;
+            color: rgb(255, 255, 255);
+        }
+        body{
+            background-color: cadetblue;
+        }
+        nav{
+            text-align: center;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#agregar">Agregar</a>
+        <a href="#reservar">Reservar</a>
+        <a href="#devolver">Devolver</a>
+    </nav>
+    <main>
+        <section id="agregar">
+            <h1>Biblioteca San Francisco</h1>
+            <h2>Agregar Libros</h2>
+            <form action="">
+                <label for="">Nombre del libro</label>
+                <input type="text" id="nombre"> <br>
+                <label for="">Autor</label> 
+                <input type="text" id="autor"><br>
+                <label for="">Genero</label> 
+                <input type="text" id="genero"><br>
+                <input type="button" onclick= agregarLibro() value="Agregar Libro">
+            </form>
+            <h2>Información de los libros</h2>
+            <p id="mostrar_libros"></p>
+        </section>
+        <section id="reservar">
+            <h1>Reservar Libro</h1>
+            <form action="">
+                <label for="">Nombre del libro</label>
+                <input type="text" id="nombrelib"> <br>
+                <label for="">Tu nombre</label>
+                <input type="text" id="nombrepersona"> <br>
+                <input type="button" onclick= reservarLibro() value="Reservar">
+            </form>
+            <h2>Información retiro</h2>
+            <p id="mostrarreserva"></p>
+        </section>
+        <section id="devolver">
+            <h1>Devolver Libro</h1>
+            <form action="">
+                <label for="">Nombre del libro</label>
+                <input type="text" id="nombreld"> <br>
+                <label for="">Tu nombre</label>
+                <input type="text" id="nombrepd"> <br>
+                <input type="button" onclick= devolverLibro() value="Devolver">
+            </form>
+            <h2>Información devolución</h2>
+            <p id="mostrardevolucion"></p>
+        </section>
+    </main>
+    
+    <footer>
+        Libreria Regional San Fco. &copy; 2025
+    </footer>
+</body>
+</html>
+
+<script>
+    var Libro1; 
+
+    function agregarLibro() {
+        var nombre= document.getElementById("nombre").value
+        var autor= document.getElementById("autor").value
+        var genero= document.getElementById("genero").value
+
+        var libro = {nombre,autor,genero}
+
+        var listado_libros = []
+        listado_libros.push(libro)
+
+        for (let index = 0; index < listado_libros.length; index++) {
+           
+            
+        }
+
+        document.getElementById("nombre").value = ""
+        document.getElementById("autor").value = ""
+        document.getElementById("genero").value = ""
+
+        var Libro1 = new Biblioteca(nombre,autor,genero)
+
+        document.getElementById("mostrar_libros").innerHTML += Libro1.Mostrarlibro()
+    } 
+
+    function reservarLibro() {
+        var nombrelibro= document.getElementById("nombrelib").value
+        var nombrepersona= document.getElementById("nombrepersona").value
+
+        document.getElementById("mostrarreserva").innerHTML= "El nombre del libro es :  " + nombrelibro + ", el nombre del dueño es:  " + nombrepersona
+
+        document.getElementById("nombrelib").value = ""
+        document.getElementById("nombrepersona").value = ""
+
+        document.getElementById("mostrar_libros").innerHTML += Libro1.Retirarlibro()
+
+        document.getElementById("mostrar_libros").innerHTML += Libro1.Mostrarlibro()
+    }
+
+    function devolverLibro() {
+        var librod= document.getElementById("nombreld").value
+        var personad= document.getElementById("nombrepd").value
+
+        document.getElementById("mostrardevolucion").innerHTML= "El nombre del libro es : " + librod + ", el dueño es: " + personad
+
+        document.getElementById("nombreld").value = ""
+        document.getElementById("nombrepd").value = ""
+
+        document.getElementById("mostrar_libros").innerHTML += Libro1.Devolverlibro()
+
+        document.getElementById("mostrar_libros").innerHTML += Libro1.Mostrarlibro()
+    }
+
+    class Biblioteca {
+        constructor(libro, autor, genero, estado){
+            this.libro = libro;
+            this.autor = autor;
+            this.genero = genero;
+            this.estado = "disponible";
+        }
+    
+        Mostrarlibro(){
+            return "Nombre: " + this.libro + "Autor: " + this.autor + "Genero: " + this.genero + "Estado: " + this.estado
+        }
+
+        Retirarlibro(){
+            if(estado === disponible){
+                this.estado == retirado
+                return this.estado
+            }else{
+                return "No disponible"
+            }
+
+            return "Este libro llamado " + this.libro + " tiene un autor que es " + this.autor + " de genero " + this.genero + " y esta " + esta;
+        }
+
+        Devolverlibro(){
+            if(estado === retirado){
+                this.estado == disponible
+                return this.estado
+            }else{
+                return "No disponible"
+            }
+
+            return "Este libro llamado " + this.libro + " tiene un autor que es " + this.autor + " de genero " + this.genero + " y esta " + esta;
+        }
+    }
+</script>
